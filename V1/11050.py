@@ -6,7 +6,7 @@ if os != "linux" :
 else: 
     input=sys.stdin.readline
 
-T=int(input())
+n,m = map(int,input().split())
 
 def factorial(n):
     ans = 1
@@ -18,7 +18,4 @@ def factorial(n):
 def bino_coef_factorial(n, m):
     return factorial(n) // factorial(m) // factorial(n-m)
 
-for _ in range(T):
-    n,m = map(int,input().split())
-    result = bino_coef_factorial(m,n)
-    print(result)
+print(bino_coef_factorial(n,m))
