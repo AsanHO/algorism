@@ -14,14 +14,11 @@ people = deque()
 for i in range(n):
     people.append(i+1)
 
-print(people)
-
 count = 1
 result = []
 
 while people:
     item = people.popleft()
-    print(item,count,k)
     if count == k:
         result.append(item)
         count = 1
