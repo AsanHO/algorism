@@ -21,7 +21,6 @@ def bs (m,a):
         while start <= end:
             mid = (start + end) //2    
             if a[mid] == target:        
-                
                 break
             elif a[mid] < target:
                 start = mid + 1 
