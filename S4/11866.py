@@ -6,27 +6,43 @@ if os != "linux" :
 else: 
     input=sys.stdin.readline
 
-n,k = map(int,input().split())
-
-from collections import deque
-
-people = deque()
-for i in range(n):
-    people.append(i+1)
-
-count = 1
-result = []
-
-while people:
-    item = people.popleft()
-    if count == k:
-        result.append(item)
-        count = 1
-    else:
-        people.append(item)
-        count += 1
+T = int(input())
+deque = []
+for _ in range(T):
+    t = list(input().split())
+    command = t[0]
+    if command == "push_front":
+        x = t[1]
+        deque.insert(0,x)
+    elif command == "push_back":
+        x = t[1]
+        deque.append(x)
+    elif command == "pop_front":
+        if len(deque) == 0:
+            print(-1)
+        else:
+            print(deque[0])
+            deque.remove(deque[0])
+    elif command == "pop_back":
+        if len(deque) == 0:
+            print(-1)
+        else:
+            print(deque.pop())
+    elif command == "size":
+        print(len(deque))
+    elif command == "empty":
+        if len(deque) == 0:
+            print(1)
+        else:
+            print(0)
+    elif command == "front":
+        if len(deque) == 0:
+            print(-1)
+        else:
+            print(deque[0])
+    elif command == "back":
+        if len(deque) == 0:
+            print(-1)
+        else:
+            print(deque[-1])
         
-    
-print("<",end="")
-print(", ".join(map(str,result)),end="")
-print(">")
