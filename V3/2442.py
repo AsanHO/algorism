@@ -13,8 +13,18 @@ for i in range(target):
     i += 1
     count = 2*i-1
     count_list.append(count)
-
+re_count_list = list(reversed(count_list))
 last = count_list[-1]
+for i in re_count_list:
+    blank_count = int((last - i) / 2)
+    blank = " "*(blank_count-1)
+    star = "*"*i
+    if i == last:
+        print(star)
+    elif i == 1:
+        break
+    else:
+        print(blank,star)
 for i in count_list:
     blank_count = int((last - i) / 2)
     blank = " "*(blank_count-1)
