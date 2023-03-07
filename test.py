@@ -1,16 +1,13 @@
-lst = ['gfg', 'is', 'a', 'portal', 'for', 'geeks']
-
-# Using sort() function
-lst.sort()
-
-print(lst)
-
-
-def solution(s):
-    answer = list(s)
+def solution(my_string):
+    answer = []
+    for i in my_string:
+        print(int(i))
+        if type(i) == int:
+            answer.append(i)
     answer.sort()
-    answer = "".join(list(reversed(answer)))
     return answer
 
 
-print(solution("Zbcdefg"))
+print(solution("hi12392"))
+print(solution("p2o4i8gj2"))
+print(solution("abcde0"))
