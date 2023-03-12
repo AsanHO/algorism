@@ -7,9 +7,9 @@ else:
     input = sys.stdin.readline
 
 t = int(input())
-result = 0
-for _ in range(t):
-    answer = int(input())
-    result += 1 if answer == 1 else -1
-
-print("Junhee is cute!")if result > 0 else print("Junhee is not cute!")
+blank = t-1
+for i in range(1, t+1):
+    cell = "* "
+    print(" "*blank + cell*i, end="\n")
+    blank -= 1
+# print문에서 ,을 사용하면 자동으로 띄어쓰기가 됨
