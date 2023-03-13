@@ -20,3 +20,4 @@ for combination in combinations:
         combination = list(combination)
         combination.sort()
         list(map(lambda x: print(x), combination))
+        break
