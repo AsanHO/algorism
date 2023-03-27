@@ -1,4 +1,3 @@
-result = ""
-for i in range(4+1):
-    result += str(bin(i).replace("0b", ""))
-print(result)
+arr = [1, 10, 2, 3, 4, 5, 20, 11, 12, 32]
+arr.sort()
+print(arr)

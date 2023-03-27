@@ -13,14 +13,17 @@ for _ in range(k):
 
 left = 1
 right = max(cables)
-
+count = 0
 while left <= right:
     mid = (left+right)//2
     count = 0
-    for i in cables:
-        count += i // mid  # 각 랜선을 미드로 나눠서 더함
-    if count >= n:
-        left = mid + 1
-    else:
+    for cable in cables:
+        count += cable // mid
+    print(mid, count, n, left, right)
+    if count < n:  # 케이블수가 필요한수보다 작다면 더 짧게 잘라야함
         right = mid - 1
+    else:  # 케이블수가 필요한수보다 많다면 더 길게 잘라야함
+        left = mid + 1
+
+print(sum(list(map(lambda x: x//right, cables))))
 print(right)
