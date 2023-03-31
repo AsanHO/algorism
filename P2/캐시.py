@@ -8,7 +8,7 @@ def solution(cacheSize, cities):
     for city in cities:
         if city in cache:
             runtime += 1
-            cache.popleft()
+            cache.pop()
             cache.append(city)
         else:
             runtime += 5
