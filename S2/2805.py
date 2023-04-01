@@ -15,18 +15,21 @@ trees = list(map(int, input().split()))
 4. 이분탐색을 변형해야할지도?
 5. 답이 없는 경우 최댓값을 출력해야함
 """
-result = 0
+result = []
 left = 1
 right = max(trees)
 while left <= right:
+    if left == 0 and right == 0:
+        break
     mid = (left+right)//2
     cutted_trees = list(map(lambda x: x-mid if x >= mid else 0, trees))
     sum_cutted_trees = sum(cutted_trees)
-    if sum_cutted_trees == m:
-        result = mid
-        break
-    elif sum_cutted_trees > m:
+    if sum_cutted_trees >= m:
         left = mid + 1
+        result.append(mid)
     else:
         right = mid - 1
-print(result)
+if len(result) == 0:
+    print(0)
+else:
+    print(max(result))
