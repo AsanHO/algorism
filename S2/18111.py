@@ -14,7 +14,6 @@ graph = [list(map(int, input().split())) for _ in range(n)]
 answer = sys.maxsize  # 일반 정수형보다 커야함
 idx = 0
 # b = 인벤토리
-print(graph)
 for floor in range(257):  # 1
     # 깎는양, 쌓는양
     del_floor, add_floor = 0, 0
@@ -31,7 +30,7 @@ for floor in range(257):  # 1
     if del_floor + b >= add_floor:
         # 최종적으로 걸리는 시간
         time = add_floor + del_floor * 2
-        print(del_floor, add_floor, time, floor)
+
         if time <= answer:
             answer = time
             idx = floor
