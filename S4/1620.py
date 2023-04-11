@@ -10,17 +10,16 @@ n, m = map(int, input().split())
 # 포켓몬명
 num_dic = {}
 poke_dic = {}
-for i in range(1, n + 1):
-    a = input().rstrip()
-    dict[i] = a
-    dict[a] = i
-
+for i in range(1, n+1):
+    # 전부 소문자로 저장
+    pokemon = input().replace("\n", "")
+    num_dic[i] = (pokemon.lower().title())
+    poke_dic[pokemon.lower().title()] = i
 for i in range(m):
     quest = input().rstrip()
     if quest.isdigit():
         print(dict[int(quest)])
     else:
         print(dict[quest])
-
 # 알파벳이면 포켓몬 번호
 # 번호가 들어오면 포켓몬 이름
