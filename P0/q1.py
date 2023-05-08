@@ -14,6 +14,7 @@ arr = [3, 2, 4, 4, 2, 5, 2, 5, 5]이면 2가 3회, 4가 2회, 5가 3회 나타�
 - 배열 arr의 길이는 1 이상 100 이하의 자연수입니다.
 - 배열 arr의 원소는 1 이상 100 이하의 자연수입니다.
 """
+from collections import Counter
 
 
 def solution(nums):
