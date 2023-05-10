@@ -30,24 +30,56 @@ BOOL과 마찬가지로 8바이트보다 작은 SHORT, FLOAT도 뒤에 패딩을
 
 def solution(arr):
     memory = []
-    for i in arr:
-        limit = 0
+    mes = ""
+    for i in range(0, len(arr)):
+        # 마지막이면 나머지 공간에 .부여
+        idx = i
+        i = arr[i]
+        print(mes)
+        print(memory)
         if i == "BOOL":
-            limit += 1
+            mes += "#"
+            if idx == len(arr)-1:
+                mes = sudo_push(mes, memory)
+
+                continue
         elif i == "SHORT":
-            limit += 2
+            if len(mes) <= 2 and len(mes) >= 1:
+                mes += "."
+            mes += "##"
+            if idx == len(arr)-1:
+                mes = sudo_push(mes, memory)
+                continue
         elif i == "FLOAT":
-            limit += 4
-        # 8이되거
-        if limit == 8:
+            if len(mes) < 4 and len(mes) >= 2:
+                mes += ".."
+            mes += "####"
+            if idx == len(arr)-1:
+                mes = sudo_push(mes, memory)
+                continue
+        if len(mes) == 8:
             memory.append(mes)
             mes = ""
-        elif i == "INT":
+        if i == "INT":
+            if len(mes) > 0:
+                mes = sudo_push(mes, memory)
             memory.append("########")
         elif i == "LONG":
+            if len(mes) > 0:
+                mes = sudo_push(mes, memory)
             memory.append("########")
             memory.append("########")
+    print(memory)
+    if len("".join(memory)) > 128:
+        return "HART"
     return memory
+
+
+def sudo_push(mes, memory):
+    count = 8 - len(mes)
+    mes += "."*count
+    memory.append(mes)
+    return ""
 
 
 print(solution(["INT", "INT", "BOOL", "SHORT", "LONG"]))
