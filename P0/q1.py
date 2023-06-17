@@ -18,22 +18,7 @@ from collections import Counter
 
 
 def solution(nums):
-    answer = []
-    nums.sort()
-    i = 0
-    while i < len(nums)-1:
-        num = nums[i]
-        count = 1
-        for j in range(i+1, len(nums)):
-            if num == nums[j]:
-                count += 1
-        if count > 1:
-            answer.append(count)
-        i += count
-    if len(answer) == 0:
-        return -1
-    else:
-        return answer
+    return
 
 
 print(solution([1, 2, 3, 3, 3, 3, 4, 4]))

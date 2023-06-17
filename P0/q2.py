@@ -29,57 +29,48 @@ BOOL과 마찬가지로 8바이트보다 작은 SHORT, FLOAT도 뒤에 패딩을
 
 
 def solution(arr):
-    memory = []
-    mes = ""
-    for i in range(0, len(arr)):
-        # 마지막이면 나머지 공간에 .부여
-        idx = i
-        i = arr[i]
-        print(mes)
-        print(memory)
-        if i == "BOOL":
-            mes += "#"
-            if idx == len(arr)-1:
-                mes = sudo_push(mes, memory)
-
-                continue
-        elif i == "SHORT":
-            if len(mes) <= 2 and len(mes) >= 1:
-                mes += "."
-            mes += "##"
-            if idx == len(arr)-1:
-                mes = sudo_push(mes, memory)
-                continue
-        elif i == "FLOAT":
-            if len(mes) < 4 and len(mes) >= 2:
-                mes += ".."
-            mes += "####"
-            if idx == len(arr)-1:
-                mes = sudo_push(mes, memory)
-                continue
-        if len(mes) == 8:
-            memory.append(mes)
-            mes = ""
+    answer = []
+    memo = ""
+    for i in arr:
         if i == "INT":
-            if len(mes) > 0:
-                mes = sudo_push(mes, memory)
-            memory.append("########")
+            if len(memo) > 0:
+                while len(memo) < 8:
+                    memo += "."
+                answer.append(memo)
+                memo = ""
+            answer.append("########")
         elif i == "LONG":
-            if len(mes) > 0:
-                mes = sudo_push(mes, memory)
-            memory.append("########")
-            memory.append("########")
-    print(memory)
-    if len("".join(memory)) > 128:
-        return "HART"
-    return memory
+            if len(memo) > 0:
+                while len(memo) < 8:
+                    memo += "."
+                answer.append(memo)
+                memo = ""
+            answer.append("########")
+            answer.append("########")
+        elif i == "BOOL":
+            memo += "#"
+        elif i == "SHORT":
+            while len(memo) % 2 != 0:
+                memo += "."
+            memo += "##"
+        elif i == "FLOAT":
+            while len(memo) % 4 != 0:
+                memo += "."
+            memo += "####"
+        if len(memo) == 8:
+            answer.append(memo)
+            memo = ""
+    if len(memo) > 0:
+        while len(memo) < 8:
+            memo += "."
+        answer.append(memo)
+        memo = ""
+    count = len("".join(answer))
 
-
-def sudo_push(mes, memory):
-    count = 8 - len(mes)
-    mes += "."*count
-    memory.append(mes)
-    return ""
+    if count > 128:
+        return "HALT"
+    else:
+        return ",".join(answer)
 
 
 print(solution(["INT", "INT", "BOOL", "SHORT", "LONG"]))
